@@ -1,61 +1,62 @@
-// Project class generator.
-// Required: Name, Objective, Description, Creation and Estimated Completion dates, List of Activities.
-
-class Projects {
+class Project {
   constructor(name,objective) {
+    let date = new Date();
     this.name = name;
     this.objective = objective;
-    this.startDate = Date.now();
+    this.startDate = date;
     this.description = '';
     this.completionDate = 0;
     this.activities = [];
   }
 
-  get name() {
+  get getName() {
     return this.name;
   }
 
-  get objective() {
+  get getObjective() {
     return this.objective;
   }
 
-  get startDate() {
+  get getStartDate() {
     return this.startDate;
   }
 
-  get description() {
+  get getDescription() {
     return this.description;
   }
 
-  get completionDate() {
+  get getCompletionDate() {
     return this.completionDate;
   }
 
-  get activities() {
+  get getActivities() {
     return this.activities;
   }
 
-  set name(name) {
+  set setName(name) {
     this.name = name;
   }
 
-  set objective(objective) {
+  set setObjective(objective) {
     this.objective = objective;
   }
 
-  set startDate(startDate) {
+  set setStartDate(startDate) {
     this.startDate = startDate;
   }
 
-  set description(description) {
+  set setDescription(description) {
     this.description = description;
   }
 
-  set completionDate(completionDate) {
+  set setCompletionDate(completionDate) {
     this.completionDate = completionDate;
   }
 
-  set activities(activities) {
+  set setActivities(activities) {
     this.activities = activities;
   }
+
 }
+
+export { Project  as default};

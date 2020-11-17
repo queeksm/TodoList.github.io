@@ -1,4 +1,4 @@
-class Activities {
+class Activity {
   constructor(title,description,dueDate,priority) {
     this.title = title;
     this.description = description;
@@ -6,36 +6,38 @@ class Activities {
     this.priority = priority;
   }
 
-  get title() {
+  get getTitle() {
     return this.title;
   }
 
-  get description() {
+  get getDescription() {
     return this.description;
   }
 
-  get dueDate() {
+  get getDueDate() {
     return this.dueDate;
   }
   
-  get priority() {
+  get getPriority() {
     return this.priority;
   }
 
-  set title(title) {
+  set setTitle(title) {
     this.title = title;
   }
 
-  set description(description) {
+  set setDescription(description) {
     this.description = description;
   }
 
-  set dueDate(dueDate) {
+  set setDueDate(dueDate) {
     this.dueDate = dueDate;
   }
 
-  set priority(priority) {
+  set setPriority(priority) {
     this.priority = priority;
   }
 
 }
+
+export { Activity as default};
