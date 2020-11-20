@@ -2,10 +2,17 @@
 // DOM manipulators.
 
 import './style.css';
-import masterRenderer from './modules/renderer';
+import { masterRenderer,projectDisplayer} from './modules/renderer';
 import Project from './modules/projects';
 
 let projects = [];
+
+const projectRenderer = (projects) => {
+  let projectDisplay = document.getElementById('projectDisplay');
+  for (let index = 0; index < projects.length; index++) {
+    projectDisplayer(projectDisplay, index, projects);
+  }
+}
 
 const submitter = () =>  {
   let form = document.getElementById('projectFormContainer');
@@ -14,16 +21,22 @@ const submitter = () =>  {
   let project = new Project(name,objective);  
   form.className += ' hidden';
   projects.push(project);
-  console.log(projects);
+  projectRenderer(projects);
 }
 
+const adder = () => {
+  let form = document.getElementById('projectFormContainer');
+  form.className -= ' hidden';
+}
+
+masterRenderer(submitter,adder);
 
 
-masterRenderer(submitter);
+//Activities support added.
+//Activities display and manipulation
+//Styling
 
 
-
-//The function will create a new project and then will dispay it within a new dedicated div.projectHub
 
 
 

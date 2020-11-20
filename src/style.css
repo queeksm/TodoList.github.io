@@ -8,3 +8,43 @@
 .hidden {
   display: none;
 }
+
+.projectDisplayer {
+  border: 1px solid red;
+  margin: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  padding: 10px;
+}
+
+.poDisplayer {
+  border: 1px solid blue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 12px;
+}
+
+.pGenInfo {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+}
+
+.pName {
+  padding-right: 10px;
+  border-right: solid 1px;
+}
+
+.pSDate {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-right: solid 1px;
+  border-left: 1px solid;
+}
+
+.pFDate {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-right: solid 1px;
+  border-left: 1px solid;
+}

@@ -4,7 +4,7 @@ class Project {
     this.name = name;
     this.objective = objective;
     this.startDate = date;
-    this.description = '';
+    this.description = 'Lorem ipsus dolor sit amet';
     this.completionDate = 0;
     this.activities = [];
   }
