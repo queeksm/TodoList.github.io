@@ -7,7 +7,7 @@
 }
 
 .hidden {
-  display: none !important; 
+  display: none !important;
 }
 
 .projectDisplay {
@@ -15,7 +15,7 @@
   padding-top: 15px;
 }
 
-.projectFormContainer{
+.projectFormContainer {
   display: flex;
   flex-direction: column;
 }
@@ -23,8 +23,6 @@
 .nameInput {
   margin-bottom: 15px;
 }
-
-.objInput
 
 .projectTitle {
   font-size: 25px;
@@ -111,13 +109,11 @@
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-
 }
 
 .aGenInfo {
   width: 100%;
   display: flex;
-
 }
 
 .aTitle {
