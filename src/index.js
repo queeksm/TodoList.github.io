@@ -1,77 +1,97 @@
-// This is the index.js, index will work as a main hub for calling all the functions, object generators and
-// DOM manipulators.
-
 import './style.css';
-import { masterRenderer,projectDisplayer, updater} from './modules/renderer';
+import {
+  masterRenderer, projectDisplayer, updater, activitiesCreator,
+} from './modules/renderer';
 import Project from './modules/projects';
+import Activity from './modules/activities';
 
-let projects = [];
+const projects = [];
+
+const editMaster = (evt) => {
+  const index = evt.target.id.replace('editButton', '');
+  const container = document.getElementById(`editForm${index} `);
+  const aContainer = document.getElementById(`pAContainer${index}`);
+  const button = document.getElementById(`editButton${index}`);
+  container.classList.remove('hidden');
+  button.className += ' hidden';
+  aContainer.className += ' hidden';
+};
 
 const editer = (evt) => {
+  const index = evt.target.id.replace('subEdit', '');
 
-  let index = evt.target.id.replace('subEdit','');
-
-  let name = document.getElementById(`nameInput${index}`).value;
-  let objective = document.getElementById(`objInput${index}`).value;
-  let description = document.getElementById(`descInput${index}`).value;
-  let cDateInput = document.getElementById(`cDateInput${index}`).value;
+  const name = document.getElementById(`nameInput${index}`).value;
+  const objective = document.getElementById(`objInput${index}`).value;
+  const description = document.getElementById(`descInput${index}`).value;
+  const cDateInput = document.getElementById(`cDateInput${index}`).value;
 
   projects[index].setName = name;
   projects[index].setDescription = description;
   projects[index].setObjective = objective;
   projects[index].setCompletionDate = cDateInput;
 
-  updater(index,projects);
+  updater(index, projects);
+};
 
-}
+const activitiesRenderer = (index, projects) => {
+  const actArray = projects[index].getActivities;
+  for (let i = 0; i < actArray.length; i += 1) {
+    activitiesCreator(i, index, actArray[i]);
+  }
+};
+
+const activitiesSubmitter = (evt) => {
+  const index = evt.target.id.replace('editBActivities', '');
+
+  const actForm = document.getElementById(`pActForm${index}`);
+  const alert = document.getElementById('actAlerts');
+  const title = document.getElementById(`titleInput${index}`).value;
+  const description = document.getElementById(`descriptionAct${index}`).value;
+  const dueDate = document.getElementById(`dueDateInput${index}`).value;
+  const priorityInput = document.getElementById(`priorityInput${index}`).value;
+
+  if (title !== '' || description !== '' || dueDate !== '' || priorityInput !== '') {
+    const activity = new Activity(title, description, dueDate, priorityInput);
+    projects[index].setActivities = activity;
+    alert.innerHTML = '';
+    actForm.className += ' hidden';
+    activitiesRenderer(index, projects);
+  } else {
+    alert.innerHTML = 'You must fill the required fields to create a new Activity.';
+  }
+};
 
 const projectRenderer = (projects) => {
-  let projectDisplay = document.getElementById('projectDisplay');
-  for (let index = 0; index < projects.length; index++) {
-    projectDisplayer(projectDisplay, index, projects,editer,editMaster);
+  const projectDisplay = document.getElementById('projectDisplay');
+  for (let index = 0; index < projects.length; index += 1) {
+    projectDisplayer(projectDisplay, index, projects, editer, editMaster, activitiesSubmitter);
   }
-}
+};
 
-const submitter = () =>  {
-  let form = document.getElementById('projectFormContainer');
-  let name = document.getElementById('nameInput').value;
-  let objective = document.getElementById('objInput').value;
-  let description = document.getElementById('descInput').value;
-  let cDateInput = document.getElementById('cDateInput').value;
-  let project = new Project(name,objective);
-  project.setDescription = description;
-  project.setCompletionDate = cDateInput;
-  form.className += ' hidden';
-  projects.push(project);
-  projectRenderer(projects);
-  console.log(description);
-}
+const submitter = () => {
+  const alert = document.getElementById('projectsAlert');
+  const form = document.getElementById('projectFormContainer');
+  const name = document.getElementById('nameInput').value;
+  const objective = document.getElementById('objInput').value;
+  const description = document.getElementById('descInput').value;
+  const cDateInput = document.getElementById('cDateInput').value;
 
-
+  if (name !== '' || objective !== '' || description !== '' || cDateInput !== '') {
+    const project = new Project(name, objective);
+    project.setDescription = description;
+    project.setCompletionDate = cDateInput;
+    form.className += ' hidden';
+    alert.innerHTML = '';
+    projects.push(project);
+    projectRenderer(projects);
+  } else {
+    alert.innerHTML = 'You must fill the required fields';
+  }
+};
 
 const adder = () => {
-  let form = document.getElementById('projectFormContainer');
-  form.className -= ' hidden';
-}
+  const form = document.getElementById('projectFormContainer');
+  form.classList.remove('hidden');
+};
 
-const editMaster = (evt) => {
-  console.log(evt.target.id);
-  let index = evt.target.id.replace('editButton','');
-  let container = document.getElementById(`editForm${index} `);
-  const button = document.getElementById(`editButton${index}`);
-  container.className -= ' hidden';
-  button.className += ' hidden';
-
-}
-
-masterRenderer(submitter,adder);
-
-
-//Activities support added.
-//Activities display and manipulation
-//Styling
-
-
-
-
-
+masterRenderer(submitter, adder);

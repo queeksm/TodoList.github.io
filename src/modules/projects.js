@@ -1,9 +1,9 @@
 class Project {
-  constructor(name,objective) {
-    let date = new Date();
+  constructor(name, objective) {
+    const date = new Date();
     this.name = name;
     this.objective = objective;
-    this.startDate = date;
+    this.startDate = date.toISOString();
     this.description = 'Lorem ipsus dolor sit amet';
     this.completionDate = 0;
     this.activities = [];
@@ -54,9 +54,8 @@ class Project {
   }
 
   set setActivities(activities) {
-    this.activities = activities;
+    this.activities.push(activities);
   }
-
 }
 
-export { Project  as default};
+export { Project as default };

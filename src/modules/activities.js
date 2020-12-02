@@ -1,5 +1,5 @@
 class Activity {
-  constructor(title,description,dueDate,priority) {
+  constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
@@ -17,7 +17,7 @@ class Activity {
   get getDueDate() {
     return this.dueDate;
   }
-  
+
   get getPriority() {
     return this.priority;
   }
@@ -37,7 +37,6 @@ class Activity {
   set setPriority(priority) {
     this.priority = priority;
   }
-
 }
 
-export { Activity as default};
+export { Activity as default };

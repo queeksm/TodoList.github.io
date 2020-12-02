@@ -1,12 +1,34 @@
 .projectHub {
   display: flex;
+  text-align: center;
   flex-direction: column;
   justify-content: center;
   border: solid 1px green;
 }
 
 .hidden {
-  display: none;
+  display: none !important; 
+}
+
+.projectDisplay {
+  border: 1px solid maroon;
+  padding-top: 15px;
+}
+
+.projectFormContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.nameInput {
+  margin-bottom: 15px;
+}
+
+.objInput
+
+.projectTitle {
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .projectDisplayer {
@@ -21,21 +43,31 @@
   border: 1px solid blue;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .pGenInfo {
+  text-align: center;
+  border: 1px solid lavender;
   display: flex;
+  margin-top: 15px;
   flex-direction: row;
   font-size: 15px;
 }
 
+.pDescription {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .pName {
+  width: 33%;
   padding-right: 10px;
   border-right: solid 1px;
 }
 
 .pSDate {
+  width: 33%;
   padding-right: 10px;
   padding-left: 10px;
   border-right: solid 1px;
@@ -43,8 +75,63 @@
 }
 
 .pFDate {
+  width: 33%;
   padding-right: 10px;
   padding-left: 10px;
   border-right: solid 1px;
   border-left: 1px solid;
+}
+
+.editButton {
+  width: 100%;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+}
+
+.formInput {
+  height: 150px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.formInputDate {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.pAContainer {
+  border: solid 1px purple;
+}
+
+.smallAContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+
+}
+
+.aGenInfo {
+  width: 100%;
+  display: flex;
+
+}
+
+.aTitle {
+  width: 33%;
+}
+
+.aDescription {
+  width: 100%;
+}
+
+.aDueDate {
+  width: 33%;
+}
+
+.aPriority {
+  width: 33%;
 }
