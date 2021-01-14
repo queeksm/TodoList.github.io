@@ -1,18 +1,17 @@
-import { mainRenderer } from './modules/renderer';
-import  Project  from './modules/projects';
+import mainRenderer from './modules/renderer';
+import Project from './modules/projects';
 import Activity from './modules/activities';
 
-
-let projects = [];
+const projects = [];
 
 const setEditActivity = (evt) => {
-  const index = evt.target.id.replace('editActButton','');
+  const index = evt.target.id.replace('editActButton', '');
   const form = document.getElementById(`activityFormContainer${index}`);
-  form.classList.remove('hidden');  
-}
+  form.classList.remove('hidden');
+};
 
 const editActivity = (evt) => {
-  const index = evt.target.id.replace('activityEditAccept','');
+  const index = evt.target.id.replace('activityEditAccept', '');
   const arr = index.split('');
   const form = document.getElementById(`activityFormContainer${index}`);
   const title = document.getElementById(`activityFormTitleInput${index}`);
@@ -27,7 +26,7 @@ const editActivity = (evt) => {
   const prioChange = document.getElementById(`activityPriority${index}`);
   const activities = projects[arr[0]].getActivities;
 
-  if (title.value != '' && description.value != '' && date.value != '' && priority.value != '') {
+  if (title.value !== '' && description.value !== '' && date.value !== '' && priority.value !== '') {
     activities[arr[1]].setTitle = title.value;
     activities[arr[1]].setDescription = description.value;
     activities[arr[1]].setDueDate = date.value;
@@ -42,32 +41,32 @@ const editActivity = (evt) => {
     date.value = '';
     priority.value = '';
     alert.innerHTML = '';
-  }else {
+  } else {
     alert.innerHTML = 'You must enter all the required fields';
   }
-}
+};
 
 const deleteActivity = (evt) => {
-  const index = evt.target.id.replace('delActButton','');
+  const index = evt.target.id.replace('delActButton', '');
   const arr = index.split('');
-  
-  let activities = projects[arr[0]].getActivities;
+  const [one, two] = arr;
+
+  let activities = projects[one].getActivities;
 
   for (let actindex = 0; actindex < activities.length; actindex += 1) {
-    const del =  document.getElementById(`activityContainer${arr[0]}${actindex}`);
+    const del = document.getElementById(`activityContainer${one}${actindex}`);
     del.remove();
   }
-  projects[arr[0]].eliminate = arr[1];
-  activities = projects[arr[0]].getActivities;
-  console.log(activities);
+  projects[one].eliminate = two;
+  activities = projects[one].getActivities;
 
   for (let actindex = 0; actindex < activities.length; actindex += 1) {
-    mainRenderer('activity',arr[0],actindex,[],[deleteActivity,setEditActivity,editActivity],0,activities[actindex]);
+    mainRenderer('activity', one, actindex, [], [deleteActivity, setEditActivity, editActivity], 0, activities[actindex]);
   }
-}
+};
 
 const newActivity = (evt) => {
-  const index = evt.target.id.replace('activityEditAccept','');
+  const index = evt.target.id.replace('activityEditAccept', '');
   const form = document.getElementById(`activityFormContainer${index}`);
   const title = document.getElementById(`activityFormTitleInput${index}`);
   const description = document.getElementById(`activityFormDescriptionInput${index}`);
@@ -75,8 +74,8 @@ const newActivity = (evt) => {
   const priority = document.getElementById(`activityFormPriorityInput${index}`);
   const alert = document.getElementById('masterAlert');
 
-  if (title.value != '' && description.value != '' && dueDate.value != '' && priority.value != '') {
-    const activity = new Activity(title.value,description.value,dueDate.value,priority.value);
+  if (title.value !== '' && description.value !== '' && dueDate.value !== '' && priority.value !== '') {
+    const activity = new Activity(title.value, description.value, dueDate.value, priority.value);
     projects[index].setActivities = activity;
     form.className += ' hidden';
     title.value = '';
@@ -86,28 +85,28 @@ const newActivity = (evt) => {
     const activities = projects[index].getActivities;
     alert.innerHTML = '';
     for (let actindex = 0; actindex < activities.length; actindex += 1) {
-      mainRenderer('activity',index,actindex,[],[deleteActivity,setEditActivity,editActivity],0,activities[actindex]);     
-    }    
-  }else {
+      mainRenderer('activity', index, actindex, [], [deleteActivity, setEditActivity, editActivity], 0, activities[actindex]);
+    }
+  } else {
     alert.innerHTML = 'You must enter all the required fields';
   }
-}
+};
 
 const setNewActivity = (evt) => {
-  const index = evt.target.id.replace('newActButton','');
+  const index = evt.target.id.replace('newActButton', '');
   const form = document.getElementById(`activityFormContainer${index}`);
   form.classList.remove('hidden');
-}
+};
 
 const setEditproject = (evt) => {
-  const index = evt.target.id.replace('editProject','');
+  const index = evt.target.id.replace('editProject', '');
   const projectEditForm = document.getElementById(`projectFormContainer${index}`);
-  projectEditForm.classList.remove('hidden');  
-}
+  projectEditForm.classList.remove('hidden');
+};
 
 const editProject = (evt) => {
-  const index = evt.target.id.replace('projectFormAcceptEditButton','');
-  const form =  document.getElementById(`projectFormContainer${index}`);
+  const index = evt.target.id.replace('projectFormAcceptEditButton', '');
+  const form = document.getElementById(`projectFormContainer${index}`);
   const name = document.getElementById(`projectFormNameInput${index}`);
   const objective = document.getElementById(`projectFormObjectiveInput${index}`);
   const startDate = document.getElementById(`projectFormStartDateInput${index}`);
@@ -119,8 +118,8 @@ const editProject = (evt) => {
   const projectDescription = document.getElementById(`projectDescription${index}`);
   const alert = document.getElementById('masterAlert');
 
-  if (name.value != '' && objective.value != '' && startDate.value != '' && description.value != '' && endDate.value != '') {
-    projects[index].setName = name.value;   
+  if (name.value !== '' && objective.value !== '' && startDate.value !== '' && description.value !== '' && endDate.value !== '') {
+    projects[index].setName = name.value;
     projects[index].setObjective = objective.value;
     projects[index].setDescription = description.value;
     projects[index].setStartDate = startDate.value;
@@ -135,27 +134,27 @@ const editProject = (evt) => {
     startDate.value = '';
     endDate.value = '';
     description.value = '';
-    alert.innerHTML = ''; 
+    alert.innerHTML = '';
   } else {
     alert.innerHTML = 'You must enter all the required fields';
   }
-}
+};
 
 const deleteProject = (evt) => {
-  const start = evt.target.id.replace('deleteProject','');
+  const start = evt.target.id.replace('deleteProject', '');
   for (let index = 0; index < projects.length; index += 1) {
     const projectContainer = document.getElementById(`projectContainer${index}`);
-    projectContainer.remove();    
+    projectContainer.remove();
   }
-  projects.splice(start,1);
+  projects.splice(start, 1);
   for (let index = 0; index < projects.length; index += 1) {
     const activities = projects[index].getActivities;
-    mainRenderer('project',index,0,[setNewActivity,setEditproject,deleteProject,0,0,editProject,newActivity],[],projects[index]);
-    for (let actindex = 0; actindex < activities.length; actindex += 1) {      
-      mainRenderer('activity',index,actindex,[],[deleteActivity,setEditActivity,editActivity],0,activities[actindex])
-    }    
+    mainRenderer('project', index, 0, [setNewActivity, setEditproject, deleteProject, 0, 0, editProject, newActivity], [], projects[index]);
+    for (let actindex = 0; actindex < activities.length; actindex += 1) {
+      mainRenderer('activity', index, actindex, [], [deleteActivity, setEditActivity, editActivity], 0, activities[actindex]);
+    }
   }
-}
+};
 
 const newProject = () => {
   const form = document.getElementById('defaultFormContainer');
@@ -164,16 +163,16 @@ const newProject = () => {
   const startDate = document.getElementById('defaultProjectDatesInput');
   const description = document.getElementById('defaultProjectDescriptionInput');
   const alert = document.getElementById('masterAlert');
-  if (name.value != '' && objective.value != '' && startDate.value != '' && description.value != '') {
-    const project =  new Project(name.value, objective.value);
+  if (name.value !== '' && objective.value !== '' && startDate.value !== '' && description.value !== '') {
+    const project = new Project(name.value, objective.value);
     project.setDescription = description.value;
     project.setStartDate = startDate.value;
     projects.push(project);
-    
+
     for (let index = 0; index < projects.length; index += 1) {
-      mainRenderer('project',index,0,[setNewActivity,setEditproject,deleteProject,0,0,editProject,newActivity],[],projects[index]);
+      mainRenderer('project', index, 0, [setNewActivity, setEditproject, deleteProject, 0, 0, editProject, newActivity], [], projects[index]);
     }
-  
+
     form.className += ' hidden';
     name.value = '';
     objective.value = '';
@@ -183,15 +182,13 @@ const newProject = () => {
   } else {
     alert.innerHTML = 'You must enter all the required fields';
   }
-}
+};
 
 const setProject = () => {
   const form = document.getElementById('defaultFormContainer');
   form.classList.remove('hidden');
-}
+};
 
-const pfunctions = [setNewActivity,setEditproject,deleteProject,setProject,newProject];
+const pfunctions = [setNewActivity, setEditproject, deleteProject, setProject, newProject];
 
-mainRenderer('default',1,1,pfunctions);
-
-
+mainRenderer('blank', 1, 1, pfunctions);

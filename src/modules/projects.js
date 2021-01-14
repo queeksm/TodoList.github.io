@@ -58,7 +58,7 @@ class Project {
   }
 
   set eliminate(index) {
-    this.activities.splice(index,1);
+    this.activities.splice(index, 1);
   }
 }
 
