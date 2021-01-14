@@ -36,8 +36,8 @@
 .projectContainer {
   display: flex;
   text-align: center;
-  flex-direction: column;  
-  padding-top: 15px;  
+  flex-direction: column;
+  padding-top: 15px;
 }
 
 .projectMainContainer {
