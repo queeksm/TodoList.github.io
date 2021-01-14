@@ -1,271 +1,455 @@
 import '../style.css';
 
-const toggler = (evt) => {
-  const index = evt.target.id;
-  const container = document.getElementById(`pActForm${index}`);
-  container.classList.remove('hidden');
-};
+const mainRenderer = (key = 'blank', index = 'delta', actIndex = 'gamma', pFunctions = [], aFunctions = [], project = '', activity = '') => {
 
-const masterRenderer = (submitter, adder) => {
-  const main = document.getElementById('main');
-  const projectHub = document.createElement('div');
-  const projectForm = document.createElement('div');
-  const projectDisplay = document.createElement('div');
-  const projectTitle = document.createElement('div');
-  const nameInput = document.createElement('input');
-  const objInput = document.createElement('input');
-  const descInput = document.createElement('input');
-  const cDateInput = document.createElement('input');
-  const submitProject = document.createElement('button');
-  const addNewProject = document.createElement('button');
-  const alert = document.createElement('div');
+ const mainContainer = document.getElementById('main');
+ const projectFlag = document.getElementById(`projectFormContainer${index}`);
+ const activityFlag = document.getElementById(`activityContainer${index}${actIndex}`);
+ 
 
-  alert.setAttribute('class', 'projectsAlert');
-  alert.setAttribute('id', 'projectsAlert');
+ switch (key) {
+   case 'project':
+    if (projectFlag == null) {
+      const projectContainer = document.createElement('div');
+      const projectName = document.createElement('div');
+      const projectDates = document.createElement('div');
+      const projectObjective = document.createElement('div');
+      const projectDescription = document.createElement('div');
+      const projectActivities = document.createElement('div');
+      const newActbutton = document.createElement('button');
+      const editProject = document.createElement('button');
+      const deleteProject = document.createElement('button');
+      const projectButtons = document.createElement('div');
+      const projectAttrContainer = document.createElement('div');
+      const projectMainContainer = document.createElement('div');
 
-  projectHub.setAttribute('class', 'projectHub');
-  projectHub.setAttribute('id', 'projectHub');
+      const projectFormContainer = document.createElement('div');
+      const projectFormName = document.createElement('div');
+      const projectFormObjective = document.createElement('div');
+      const projectFormDescription = document.createElement('div');
+      const projectFormStartDate = document.createElement('div');
+      const projectFormCompletionDate = document.createElement('div');
 
-  projectForm.setAttribute('class', 'projectFormContainer hidden');
-  projectForm.setAttribute('id', 'projectFormContainer');
+      const projectFormNameInput = document.createElement('input');
+      const projectFormObjectiveInput = document.createElement('input');
+      const projectFormDescriptionInput = document.createElement('input');
+      const projectFormStartDateInput = document.createElement('input');
+      const projectFormCompletionDateInput = document.createElement('input');
+      const projectFormAcceptEditButton = document.createElement('button');
 
-  projectDisplay.setAttribute('class', 'projectDisplay');
-  projectDisplay.setAttribute('id', 'projectDisplay');
+      const projectFormNameLabel = document.createElement('label');
+      const projectFormObjectiveLabel = document.createElement('label');
+      const projectFormDescriptionLabel = document.createElement('label');
+      const projectFormStartDateLabel = document.createElement('label');
+      const projectFormEndDateLabel = document.createElement('label');
 
-  projectTitle.setAttribute('class', 'projectTitle');
-  projectTitle.setAttribute('id', 'projectTitle');
-  projectTitle.innerHTML = 'Projects';
+      const activityFormTitleLabel = document.createElement('label');      
+      const activityFormDescriptionLabel = document.createElement('label');
+      const activityFormDateLabel = document.createElement('label');
+      const activityFormPriorityLabel = document.createElement('label');
 
-  nameInput.setAttribute('id', 'nameInput');
-  nameInput.setAttribute('class', 'nameInput');
+      const activityFormContainer = document.createElement('div');
+      const activityFormTitle = document.createElement('div');
+      const activityFormDescription = document.createElement('div');
+      const activityFormDueDate = document.createElement('div');
+      const activityFormPriority = document.createElement('div');
 
-  objInput.setAttribute('id', 'objInput');
-  objInput.setAttribute('class', 'objInput');
+      const activityFormTitleInput = document.createElement('input');
+      const activityFormDescriptionInput = document.createElement('input');
+      const activityFormDueDateInput = document.createElement('input');
+      const activityFormPriorityInput = document.createElement('input');
 
-  descInput.setAttribute('id', 'descInput');
-  descInput.setAttribute('class', 'descInput');
+      const activityEditAccept = document.createElement('button');
 
-  cDateInput.setAttribute('id', 'cDateInput');
-  cDateInput.setAttribute('class', 'cDateInput');
-  cDateInput.setAttribute('type', 'date');
+      projectFormNameLabel.innerHTML = 'Project Name';
+      projectFormObjectiveLabel.innerHTML = 'Project Objective';
+      projectFormDescriptionLabel.innerHTML = 'Project Description';
+      projectFormStartDateLabel.innerHTML = 'Start Date';
+      projectFormEndDateLabel.innerHTML = 'End Date';
 
-  submitProject.innerHTML = 'submit';
-  submitProject.addEventListener('click', submitter);
-  addNewProject.innerHTML = 'New Project';
-  addNewProject.addEventListener('click', adder);
+      activityFormTitleLabel.innerHTML = 'Activity Title';
+      activityFormDescriptionLabel.innerHTML = 'Activity Description';
+      activityFormDateLabel.innerHTML = 'Due Date';
+      activityFormPriorityLabel.innerHTML = 'Priority';
 
-  projectForm.appendChild(nameInput);
-  projectForm.appendChild(objInput);
-  projectForm.appendChild(descInput);
-  projectForm.appendChild(cDateInput);
-  projectForm.appendChild(submitProject);
-  projectHub.appendChild(projectTitle);
-  projectHub.appendChild(projectDisplay);
-  projectHub.appendChild(projectForm);
-  projectForm.appendChild(alert);
-  projectHub.appendChild(addNewProject);
-  main.appendChild(projectHub);
-};
+      projectAttrContainer.setAttribute('id',`projectAttrContainer${index}`);
+      projectAttrContainer.setAttribute('class','projectAttrContainer');
 
-const activitiesDisplayer = (index, activitiesSubmitter) => {
-  const pActivitiesContainer = document.createElement('div');
-  const pActForm = document.createElement('div');
-  const titleInput = document.createElement('input');
-  const descriptionAct = document.createElement('input');
-  const dueDateInput = document.createElement('input');
-  const priorityInput = document.createElement('input');
-  const editButton = document.createElement('button');
-  const actAlerts = document.createElement('div');
+      projectMainContainer.setAttribute('id',`projectMainContainer${index}`);
+      projectMainContainer.setAttribute('class','projectMainContainer');
 
-  actAlerts.setAttribute('class', 'actAlerts');
-  actAlerts.setAttribute('id', 'actAlerts');
+      activityEditAccept.setAttribute('id',`activityEditAccept${index}`);
+      activityEditAccept.setAttribute('class','activityEditAccept');
+      activityEditAccept.addEventListener('click',pFunctions[6]);
+      activityEditAccept.innerHTML = 'Create';
 
-  editButton.innerHTML = 'New Activity';
-  editButton.setAttribute('class', 'editBActivities');
-  editButton.setAttribute('id', `editBActivities${index}`);
-  editButton.addEventListener('click', activitiesSubmitter);
+      activityFormContainer.setAttribute('id',`activityFormContainer${index}`);
+      activityFormTitle.setAttribute('id',`activityFormTitle${index}`);
+      activityFormDescription.setAttribute('id',`activityFormDescription${index}`);
+      activityFormDueDate.setAttribute('id',`activityFormDueDate${index}`);
+      activityFormPriority.setAttribute('id',`activityFormPriority${index}`);
 
-  titleInput.setAttribute('id', `titleInput${index}`);
-  descriptionAct.setAttribute('id', `descriptionAct${index}`);
-  dueDateInput.setAttribute('id', `dueDateInput${index}`);
-  dueDateInput.setAttribute('type', 'date');
-  priorityInput.setAttribute('id', `priorityInput${index}`);
-  priorityInput.setAttribute('type', 'number');
+      activityFormContainer.setAttribute('class','activityFormContainer hidden');
+      activityFormTitle.setAttribute('class','activityFormTitle');
+      activityFormDescription.setAttribute('class','activityFormDescription');
+      activityFormDueDate.setAttribute('class','activityFormDueDate');
+      activityFormPriority.setAttribute('class','activityFormPriority');
 
-  pActivitiesContainer.setAttribute('class', 'pAContainer');
-  pActivitiesContainer.setAttribute('id', `pAContainer${index}`);
-  pActivitiesContainer.innerHTML = 'This is the activities container';
+      activityFormTitleInput.setAttribute('id',`activityFormTitleInput${index}`);
+      activityFormDescriptionInput.setAttribute('id',`activityFormDescriptionInput${index}`);
+      activityFormDueDateInput.setAttribute('id',`activityFormDueDateInput${index}`);
+      activityFormPriorityInput.setAttribute('id',`activityFormPriorityInput${index}`);
 
-  pActForm.setAttribute('class', 'pActForm hidden');
-  pActForm.setAttribute('id', `pActForm${index}`);
+      activityFormTitleInput.setAttribute('class','activityFormTitleInput');
+      activityFormDescriptionInput.setAttribute('class','activityFormDescriptionInput');
+      activityFormDueDateInput.setAttribute('class','activityFormDueDateInput');
+      activityFormPriorityInput.setAttribute('class','activityFormPriorityInput');
 
-  pActForm.appendChild(titleInput);
-  pActForm.appendChild(descriptionAct);
-  pActForm.appendChild(dueDateInput);
-  pActForm.appendChild(priorityInput);
-  pActForm.appendChild(editButton);
-  pActivitiesContainer.appendChild(pActForm);
-  pActivitiesContainer.appendChild(actAlerts);
+      activityFormTitleInput.setAttribute('type','text');
+      activityFormDescriptionInput.setAttribute('type','text');
+      activityFormDueDateInput.setAttribute('type','date');
+      activityFormPriorityInput.setAttribute('type','numeric');
 
-  return pActivitiesContainer;
-};
+      projectFormContainer.setAttribute('id',`projectFormContainer${index}`);
+      projectFormName.setAttribute('id',`projectFormName${index}`);
+      projectFormObjective.setAttribute('id',`projectFormObjective${index}`);
+      projectFormDescription.setAttribute('id',`projectFormDescription${index}`);
+      projectFormStartDate.setAttribute('id',`projectFormStartDate${index}`);
+      projectFormCompletionDate.setAttribute('id',`projectFormCompletionDate${index}`);
+      projectFormAcceptEditButton.setAttribute('id',`projectFormAcceptEditButton${index}`);
 
-const activitiesCreator = (i, index, activity) => {
-  const flagger = document.getElementById(`smallContainer${index}${i}`);
-  if (flagger == null) {
-    const container = document.getElementById(`pAContainer${index}`);
-    const smallContainer = document.createElement('div');
-    const aGenInfo = document.createElement('div');
-    const title = document.createElement('div');
-    const description = document.createElement('div');
-    const dueDate = document.createElement('div');
-    const priority = document.createElement('div');
+      projectFormContainer.setAttribute('class','projectFormContainer hidden');
+      projectFormName.setAttribute('class','projectFormName');
+      projectFormObjective.setAttribute('class','projectFormObjective');
+      projectFormDescription.setAttribute('class','projectFormDescription');
+      projectFormStartDate.setAttribute('class','projectFormStartDate');
+      projectFormCompletionDate.setAttribute('class','projectFormCompletionDate');
+      projectFormAcceptEditButton.setAttribute('class','projectFormAcceptEditButton');
 
-    title.innerHTML = activity.getTitle;
-    description.innerHTML = activity.getDescription;
-    dueDate.innerHTML = activity.getDueDate;
-    priority.innerHTML = activity.getPriority;
+      projectFormNameInput.setAttribute('id',`projectFormNameInput${index}`);
+      projectFormObjectiveInput.setAttribute('id',`projectFormObjectiveInput${index}`);
+      projectFormDescriptionInput.setAttribute('id',`projectFormDescriptionInput${index}`);
+      projectFormStartDateInput.setAttribute('id',`projectFormStartDateInput${index}`);
+      projectFormCompletionDateInput.setAttribute('id',`projectFormCompletionDateInput${index}`);
+      projectFormAcceptEditButton.addEventListener('click',pFunctions[5]);
+      projectFormAcceptEditButton.innerHTML = 'Accept Edit';
 
-    aGenInfo.setAttribute('class', 'aGenInfo');
-    title.setAttribute('class', 'aTitle');
-    description.setAttribute('class', 'aDescription');
-    dueDate.setAttribute('class', 'aDueDate');
-    priority.setAttribute('class', 'aPriority');
+      projectFormNameInput.setAttribute('class',`projectFormNameInput`);
+      projectFormObjectiveInput.setAttribute('class',`projectFormObjectiveInput`);
+      projectFormDescriptionInput.setAttribute('class',`projectFormDescriptionInput`);
+      projectFormStartDateInput.setAttribute('class',`projectFormStartDateInput`);
+      projectFormCompletionDateInput.setAttribute('class',`projectFormCompletionDateInput`);
 
-    smallContainer.setAttribute('id', `smallContainer${index}${i}`);
-    smallContainer.setAttribute('class', 'smallAContainer');
-    aGenInfo.appendChild(title);
-    aGenInfo.appendChild(dueDate);
-    aGenInfo.appendChild(priority);
-    smallContainer.appendChild(aGenInfo);
-    smallContainer.appendChild(description);
+      projectFormNameInput.setAttribute('type','text');
+      projectFormObjectiveInput.setAttribute('type','text');
+      projectFormDescriptionInput.setAttribute('type','text');
+      projectFormStartDateInput.setAttribute('type','date');
+      projectFormCompletionDateInput.setAttribute('type','date');
 
-    container.appendChild(smallContainer);
-  }
-};
+      projectContainer.setAttribute('id',`projectContainer${index}`);
+      projectName.setAttribute('id',`projectName${index}`);
+      projectDates.setAttribute('id',`projectDates${index}`);
+      projectObjective.setAttribute('id',`projectObjective${index}`);
+      projectDescription.setAttribute('id',`projectDescription${index}`);
+      projectActivities.setAttribute('id',`projectActContainer${index}`);
+      newActbutton.setAttribute('id',`newActButton${index}`);
+      editProject.setAttribute('id',`editProject${index}`);
+      deleteProject.setAttribute('id',`deleteProject${index}`);    
+      projectButtons.setAttribute('id',`projectButtons${index}`);
 
-const projectDisplayer = (projectDisplay, index, projects, editer, editMaster, actSubmitter) => {
-  const flagger = document.getElementById(`${index}`);
-  if (flagger == null) {
-    const newDisplay = document.createElement('div');
-    const projectObjDisplayer = document.createElement('div');
-    const pDescription = document.createElement('div');
-    const pGenInfo = document.createElement('div');
-    const pName = document.createElement('div');
-    const pSDate = document.createElement('div');
-    const pFDate = document.createElement('div');
-    const pEditForm = document.createElement('div');
+      projectContainer.setAttribute('class','projectContainer');
+      projectName.setAttribute('class','projectName');
+      projectDates.setAttribute('class','projectDates');
+      projectObjective.setAttribute('class','projectObjective');
+      projectDescription.setAttribute('class','projectDescription');
+      projectActivities.setAttribute('class','projectActContainer');
+      newActbutton.setAttribute('class','newActButton');
+      editProject.setAttribute('class','editProject');
+      deleteProject.setAttribute('class','deleteProject');
+      projectButtons.setAttribute('class','projectButtons');
 
-    const nameInput = document.createElement('input');
-    const objInput = document.createElement('input');
-    const descInput = document.createElement('input');
-    const cDateInput = document.createElement('input');
-    const editButton = document.createElement('button');
-    const submitEdits = document.createElement('button');
-    const newActivity = document.createElement('button');
+      newActbutton.innerHTML = 'New Activity';
+      editProject.innerHTML = 'Edit project';
+      deleteProject.innerHTML = 'Delete project';
 
-    newActivity.addEventListener('click', toggler);
-    newActivity.innerHTML = 'Add a new Activity';
-    newActivity.setAttribute('id', `${index}`);
+      newActbutton.addEventListener('click',pFunctions[0]);
+      editProject.addEventListener('click',pFunctions[1]);
+      deleteProject.addEventListener('click',pFunctions[2]);
 
+      projectFormName.appendChild(projectFormNameInput);
+      projectFormObjective.appendChild(projectFormObjectiveInput);
+      projectFormDescription.appendChild(projectFormDescriptionInput);
+      projectFormStartDate.appendChild(projectFormStartDateInput);
+      projectFormCompletionDate.appendChild(projectFormCompletionDateInput);
 
-    nameInput.setAttribute('id', `nameInput${index}`);
-    nameInput.setAttribute('type', 'text');
-    nameInput.setAttribute('placeholder', 'Name');
-    nameInput.setAttribute('class', 'formInputSmall');
+      projectFormContainer.appendChild(projectFormNameLabel);
+      projectFormContainer.appendChild(projectFormName);
+      projectFormContainer.appendChild(projectFormObjectiveLabel);
+      projectFormContainer.appendChild(projectFormObjective);
+      projectFormContainer.appendChild(projectFormDescriptionLabel);
+      projectFormContainer.appendChild(projectFormDescription);
+      projectFormContainer.appendChild(projectFormStartDateLabel);
+      projectFormContainer.appendChild(projectFormStartDate);
+      projectFormContainer.appendChild(projectFormEndDateLabel);
+      projectFormContainer.appendChild(projectFormCompletionDate);
+      projectFormContainer.appendChild(projectFormAcceptEditButton);
+      
+      projectButtons.appendChild(editProject);
+      projectButtons.appendChild(deleteProject);
+      
+      activityFormTitle.appendChild(activityFormTitleInput);      
+      activityFormDescription.appendChild(activityFormDescriptionInput);
+      activityFormDueDate.appendChild(activityFormDueDateInput);
+      activityFormPriority.appendChild(activityFormPriorityInput);
 
-    objInput.setAttribute('id', `objInput${index}`);
-    objInput.setAttribute('type', 'text');
-    objInput.setAttribute('placeholder', 'Objective');
-    objInput.setAttribute('class', 'formInput');
+      activityFormContainer.appendChild(activityFormTitleLabel);
+      activityFormContainer.appendChild(activityFormTitle);
+      activityFormContainer.appendChild(activityFormDescriptionLabel);
+      activityFormContainer.appendChild(activityFormDescription);
+      activityFormContainer.appendChild(activityFormDateLabel);
+      activityFormContainer.appendChild(activityFormDueDate);
+      activityFormContainer.appendChild(activityFormPriorityLabel);
+      activityFormContainer.appendChild(activityFormPriority);
+      activityFormContainer.appendChild(activityEditAccept);
+      
+      projectActivities.appendChild(activityFormContainer);
+      projectActivities.appendChild(newActbutton);
 
-    descInput.setAttribute('id', `descInput${index}`);
-    descInput.setAttribute('type', 'text');
-    descInput.setAttribute('placeholder', 'Description');
-    descInput.setAttribute('class', 'formInput');
+      projectAttrContainer.appendChild(projectName);
+      projectAttrContainer.appendChild(projectDates);
+      projectAttrContainer.appendChild(projectObjective);
+      projectAttrContainer.appendChild(projectDescription);
 
-    cDateInput.setAttribute('id', `cDateInput${index}`);
-    cDateInput.setAttribute('type', 'date');
-    cDateInput.setAttribute('class', 'formInputDate');
+      projectMainContainer.appendChild(projectAttrContainer);
+      projectMainContainer.appendChild(projectButtons);
 
-    editButton.innerHTML = 'Edit';
-    editButton.setAttribute('id', `editButton${index}`);
-    editButton.setAttribute('class', 'editButton');
-    editButton.addEventListener('click', editMaster);
+      projectContainer.appendChild(projectMainContainer);      
+      projectContainer.appendChild(projectFormContainer);
+      projectContainer.appendChild(projectActivities);
+    
+      mainContainer.appendChild(projectContainer);
 
-    submitEdits.setAttribute('id', `subEdit${index}`);
-    submitEdits.setAttribute('class', 'subEdits');
-    submitEdits.innerHTML = 'EDIT';
-    submitEdits.addEventListener('click', editer);
+      projectName.innerHTML = project.getName;
+      projectDates.innerHTML = project.getStartDate;
+      projectObjective.innerHTML = project.getObjective;
+      projectDescription.innerHTML = project.getDescription;
+      break;
+    } else {
+      break;
+    }
 
-    pEditForm.appendChild(nameInput);
-    pEditForm.appendChild(objInput);
-    pEditForm.appendChild(descInput);
-    pEditForm.appendChild(cDateInput);
-    pEditForm.appendChild(submitEdits);
+   case 'activity':
+     if (activityFlag == null) {
+      const actmainContainer = document.getElementById(`projectActContainer${index}`);
 
-    pEditForm.setAttribute('class', 'editForm hidden');
-    pEditForm.setAttribute('id', `editForm${index} `);
+      const activityContainer = document.createElement('div');
+      const activityTitle = document.createElement('div');
+      const activityDescription = document.createElement('div');
+      const activityDate = document.createElement('div');
+      const activityPriority = document.createElement('div');
+      const actButtons = document.createElement('div');
+      const delActButton = document.createElement('button');
+      const editActButton = document.createElement('button');
+      const actAttrContainer = document.createElement('div');
+      const actInfoContainer = document.createElement('div');      
+  
+      const activityFormContainer = document.createElement('div');
+      const activityFormTitle = document.createElement('div');
+      const activityFormDescription = document.createElement('div');
+      const activityFormDueDate = document.createElement('div');
+      const activityFormPriority = document.createElement('div');
+      const activityEditAccept = document.createElement('button');
+  
+      const activityFormTitleInput = document.createElement('input');
+      const activityFormDescriptionInput = document.createElement('input');
+      const activityFormDueDateInput = document.createElement('input');
+      const activityFormPriorityInput = document.createElement('input');
 
-    pDescription.setAttribute('class', 'pDescription');
-    pDescription.setAttribute('id', `pDescription${index}`);
+      actAttrContainer.setAttribute('id',`actAttrContainer${index}`);
+      actAttrContainer.setAttribute('class','actAttrContainer');
 
-    pGenInfo.setAttribute('class', 'pGenInfo');
+      actInfoContainer.setAttribute('id',`actInfoContainer${index}`);
+      actInfoContainer.setAttribute('class','actInfoContainer');
 
-    pName.setAttribute('class', 'pName');
-    pName.setAttribute('id', `pName${index}`);
-    pName.innerHTML = projects[index].getName;
+      activityEditAccept.setAttribute('id',`activityEditAccept${index}${actIndex}`);
+      activityEditAccept.setAttribute('class','activityEditAccept');
+      activityEditAccept.addEventListener('click',aFunctions[2]);
+      activityEditAccept.innerHTML = 'Accept edit';
+  
+      activityFormContainer.setAttribute('id',`activityFormContainer${index}${actIndex}`);
+      activityFormTitle.setAttribute('id',`activityFormTitle${index}${actIndex}`);
+      activityFormDescription.setAttribute('id',`activityFormDescription${index}${actIndex}`);
+      activityFormDueDate.setAttribute('id',`activityFormDueDate${index}${actIndex}`);
+      activityFormPriority.setAttribute('id',`activityFormPriority${index}${actIndex}`);
+  
+      activityFormContainer.setAttribute('class','activityFormContainer hidden');
+      activityFormTitle.setAttribute('class','activityFormTitle');
+      activityFormDescription.setAttribute('class','activityFormDescription');
+      activityFormDueDate.setAttribute('class','activityFormDueDate');
+      activityFormPriority.setAttribute('class','activityFormPriority');
+      
+      activityFormTitleInput.setAttribute('id',`activityFormTitleInput${index}${actIndex}`);
+      activityFormDescriptionInput.setAttribute('id',`activityFormDescriptionInput${index}${actIndex}`);
+      activityFormDueDateInput.setAttribute('id',`activityFormDueDateInput${index}${actIndex}`);
+      activityFormPriorityInput.setAttribute('id',`activityFormPriorityInput${index}${actIndex}`);
+  
+      activityFormTitleInput.setAttribute('class','activityFormTitleInput');
+      activityFormDescriptionInput.setAttribute('class','activityFormDescriptionInput');
+      activityFormDueDateInput.setAttribute('class','activityFormDueDateInput');
+      activityFormPriorityInput.setAttribute('class','activityFormPriorityInput');
+  
+      activityFormTitleInput.setAttribute('type','text');
+      activityFormDescriptionInput.setAttribute('type','text');
+      activityFormDueDateInput.setAttribute('type','date');
+      activityFormPriorityInput.setAttribute('type','numeric');
+  
+      activityContainer.setAttribute('id',`activityContainer${index}${actIndex}`);
+      activityTitle.setAttribute('id',`activityTitle${index}${actIndex}`);
+      activityDescription.setAttribute('id',`activityDescription${index}${actIndex}`);
+      activityDate.setAttribute('id',`activityDate${index}${actIndex}`);
+      activityPriority.setAttribute('id',`activityPriority${index}${actIndex}`);
+      delActButton.setAttribute('id',`delActButton${index}${actIndex}`);
+      editActButton.setAttribute('id',`editActButton${index}${actIndex}`);
+      actButtons.setAttribute('id',`actButtons${index}${actIndex}`);
+    
+      activityContainer.setAttribute('class','activityContainer');
+      activityTitle.setAttribute('class','activityTitle');
+      activityDescription.setAttribute('class','activityDescription');
+      activityDate.setAttribute('class','activityDate');
+      activityPriority.setAttribute('class','activityPriority');
+      delActButton.setAttribute('id',`delActButton${index}${actIndex}`);
+      editActButton.setAttribute('id',`editActButton${index}${actIndex}`);
+      actButtons.setAttribute('class','actButtons');
+  
+      delActButton.addEventListener('click',aFunctions[0]);
+      editActButton.addEventListener('click',aFunctions[1]);
+  
+      delActButton.innerHTML = 'Delete Activity';
+      editActButton.innerHTML = 'Edit Activity';
+  
+      activityFormTitle.appendChild(activityFormTitleInput);
+      activityFormDescription.appendChild(activityFormDescriptionInput);
+      activityFormDueDate.appendChild(activityFormDueDateInput);
+      activityFormPriority.appendChild(activityFormPriorityInput);
+  
+      activityFormContainer.appendChild(activityFormTitle);
+      activityFormContainer.appendChild(activityFormDescription);
+      activityFormContainer.appendChild(activityFormDueDate);
+      activityFormContainer.appendChild(activityFormPriority);
+      activityFormContainer.appendChild(activityEditAccept);
+  
+      actButtons.appendChild(delActButton);
+      actButtons.appendChild(editActButton);
 
-    pSDate.setAttribute('class', 'pSDate');
-    pSDate.setAttribute('id', `pSDate${index}`);
-    pSDate.innerHTML = projects[index].getStartDate;
+      actAttrContainer.appendChild(activityTitle);
+      actAttrContainer.appendChild(activityDescription);
+      actAttrContainer.appendChild(activityDate);
+      actAttrContainer.appendChild(activityPriority);
 
-    pFDate.setAttribute('class', 'pFDate');
-    pFDate.setAttribute('id', `pFDate${index}`);
-    pFDate.innerHTML = projects[index].getCompletionDate;
+      actInfoContainer.appendChild(actAttrContainer);
+      actInfoContainer.appendChild(actButtons);
+  
+      activityContainer.appendChild(actInfoContainer);      
+      activityContainer.appendChild(activityFormContainer);      
+  
+      actmainContainer.appendChild(activityContainer);
+  
+  
+      activityTitle.innerHTML = activity.getTitle;
+      activityDescription.innerHTML = activity.getDescription;
+      activityDate.innerHTML = activity.getDueDate;
+      activityPriority.innerHTML =activity.getPriority;
+     }    
+    break;
 
-    pDescription.innerHTML = projects[index].getDescription;
+   default:
+    const alertShower = document.createElement('div');
+    const newProject = document.createElement('button');
+    const defaultFormContainer = document.createElement('div');
+    const defaultProjectName = document.createElement('div');
+    const defaultProjectDates = document.createElement('div');
+    const defaultProjectObjective = document.createElement('div');
+    const defaultProjectDescription = document.createElement('div');
 
-    pGenInfo.appendChild(pName);
-    pGenInfo.appendChild(pSDate);
-    pGenInfo.appendChild(pFDate);
+    const defaultProjectNameLabel = document.createElement('label');
+    const defaultProjectDatesLabel = document.createElement('label');
+    const defaultProjectObjectiveLabel = document.createElement('label');
+    const defaultProjectDescriptionLabel = document.createElement('label');
 
-    projectObjDisplayer.setAttribute('class', 'poDisplayer');
-    projectObjDisplayer.setAttribute('id', `poDisplayer${index}`);
-    projectObjDisplayer.innerHTML = projects[index].getObjective;
+    const defaultProjectNameInput = document.createElement('input');
+    const defaultProjectDatesInput = document.createElement('input');
+    const defaultProjectObjectiveInput = document.createElement('input');
+    const defaultProjectDescriptionInput = document.createElement('input');
 
-    newDisplay.setAttribute('class', 'projectDisplayer');
-    newDisplay.setAttribute('id', `${index}`);
-    newDisplay.appendChild(pGenInfo);
-    newDisplay.appendChild(projectObjDisplayer);
-    newDisplay.appendChild(pDescription);
-    newDisplay.appendChild(pEditForm);
-    newDisplay.appendChild(activitiesDisplayer(index, actSubmitter));
-    newDisplay.appendChild(editButton);
-    newDisplay.appendChild(newActivity);
+    const acceptNewProject = document.createElement('button');
 
-    projectDisplay.appendChild(newDisplay);
-  }
-};
+    alertShower.setAttribute('id','masterAlert');
+    alertShower.setAttribute('class','masterAlert');
 
-const updater = (index, projects) => {
-  const container = document.getElementById(`editForm${index} `);
-  const pName = document.getElementById(`pName${index}`);
-  const pObjective = document.getElementById(`poDisplayer${index}`);
-  const pDescription = document.getElementById(`pDescription${index}`);
-  const pCDate = document.getElementById(`pFDate${index}`);
-  const aContainer = document.getElementById(`pAContainer${index}`);
-  const button = document.getElementById(`editButton${index}`);
+    acceptNewProject.setAttribute('id','acceptNewProject');
+    acceptNewProject.setAttribute('class','acceptNewProject');
+    acceptNewProject.addEventListener('click',pFunctions[4]);
+    acceptNewProject.innerHTML = 'Create';
 
-  pName.innerHTML = projects[index].getName;
-  pObjective.innerHTML = projects[index].getObjective;
-  pDescription.innerHTML = projects[index].getDescription;
-  pCDate.innerHTML = projects[index].getCompletionDate;
-  button.classList.remove('hidden');
-  aContainer.classList.remove('hidden');
-  container.className += ' hidden';
-};
+    defaultProjectNameLabel.innerHTML = 'Project Name:';
+    defaultProjectDatesLabel.innerHTML = 'Project Finishing Date:';
+    defaultProjectObjectiveLabel.innerHTML = 'Project Objective:';
+    defaultProjectDescriptionLabel.innerHTML = 'Project Description:';
 
-export {
-  projectDisplayer, masterRenderer, updater, activitiesCreator,
-};
+    defaultFormContainer.setAttribute('id','defaultFormContainer');
+    defaultProjectName.setAttribute('id','defaultProjectName');
+    defaultProjectDates.setAttribute('id','defaultProjectDates');
+    defaultProjectObjective.setAttribute('id','defaultProjectObjective');
+    defaultProjectDescription.setAttribute('id','defaultProjectDescription');
+
+    defaultFormContainer.setAttribute('class','defaultFormContainer hidden');
+    defaultProjectName.setAttribute('class','defaultProjectName');
+    defaultProjectDates.setAttribute('class','defaultProjectDates');
+    defaultProjectObjective.setAttribute('class','defaultProjectObjective');
+    defaultProjectDescription.setAttribute('class','defaultProjectDescription');
+
+    defaultProjectNameInput.setAttribute('id','defaultProjectNameInput');
+    defaultProjectDatesInput.setAttribute('id','defaultProjectDatesInput');
+    defaultProjectObjectiveInput.setAttribute('id','defaultProjectObjectiveInput');
+    defaultProjectDescriptionInput.setAttribute('id','defaultProjectDescriptionInput');
+
+    defaultProjectNameInput.setAttribute('class','defaultProjectNameInput');
+    defaultProjectDatesInput.setAttribute('class','defaultProjectDatesInput');
+    defaultProjectObjectiveInput.setAttribute('class','defaultProjectObjectiveInput');
+    defaultProjectDescriptionInput.setAttribute('class','defaultProjectDescriptionInput');
+
+    defaultProjectNameInput.setAttribute('type','text');
+    defaultProjectDatesInput.setAttribute('type','date');
+    defaultProjectObjectiveInput.setAttribute('type','text');
+    defaultProjectDescriptionInput.setAttribute('type','text');
+
+    newProject.setAttribute('id','newProject');
+    newProject.setAttribute('class','newProject');
+    newProject.addEventListener('click',pFunctions[3]);
+
+    newProject.innerHTML = 'New Project';
+    
+    defaultProjectName.appendChild(defaultProjectNameInput);
+    defaultProjectDates.appendChild(defaultProjectDatesInput);
+    defaultProjectObjective.appendChild(defaultProjectObjectiveInput);
+    defaultProjectDescription.appendChild(defaultProjectDescriptionInput);
+
+    defaultFormContainer.appendChild(defaultProjectNameLabel);
+    defaultFormContainer.appendChild(defaultProjectName);
+    defaultFormContainer.appendChild(defaultProjectDatesLabel);
+    defaultFormContainer.appendChild(defaultProjectDates);
+    defaultFormContainer.appendChild(defaultProjectObjectiveLabel);
+    defaultFormContainer.appendChild(defaultProjectObjective);
+    defaultFormContainer.appendChild(defaultProjectDescriptionLabel);
+    defaultFormContainer.appendChild(defaultProjectDescription);
+    defaultFormContainer.appendChild(acceptNewProject);
+
+    mainContainer.appendChild(alertShower);
+    mainContainer.appendChild(defaultFormContainer);
+    mainContainer.appendChild(newProject);
+
+    break;
+ }
+}
+
+export { mainRenderer };

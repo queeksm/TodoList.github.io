@@ -56,6 +56,10 @@ class Project {
   set setActivities(activities) {
     this.activities.push(activities);
   }
+
+  set eliminate(index) {
+    this.activities.splice(index,1);
+  }
 }
 
 export { Project as default };

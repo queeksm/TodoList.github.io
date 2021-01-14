@@ -1,133 +1,74 @@
-.projectHub {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  border: solid 1px green;
-}
-
 .hidden {
   display: none !important;
 }
 
-.projectDisplay {
-  border: 1px solid maroon;
-  padding-top: 15px;
-}
-
-.projectFormContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.nameInput {
-  margin-bottom: 15px;
-}
-
-.projectTitle {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.projectDisplayer {
-  border: 1px solid red;
-  margin: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 25px;
-  padding: 10px;
-}
-
-.poDisplayer {
-  border: 1px solid blue;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 18px;
-}
-
-.pGenInfo {
+.masterAlert {
   text-align: center;
-  border: 1px solid lavender;
-  display: flex;
-  margin-top: 15px;
-  flex-direction: row;
-  font-size: 15px;
+  padding: 15px;
+  font-size: 25px;
+  color: red;
+  font-weight: bolder;
 }
 
-.pDescription {
+.main {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.defaultFormContainer {
+  text-align: center;
+  padding: 15px;
+}
+
+.defaultProjectName {
+  padding-bottom: 15px;
+}
+
+.defaultProjectDates {
+  padding-bottom: 15px;
+}
+
+.defaultProjectObjective {
+  padding-bottom: 15px;
+}
+
+.projectContainer {
+  display: flex;
+  text-align: center;
+  flex-direction: column;  
+  padding-top: 15px;  
+}
+
+.projectMainContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.projectAttrContainer {
+  width: 75%;
+}
+
+.projectButtons {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.actInfoContainer {
+  display: flex;
+  flex-direction: row;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-.pName {
-  width: 33%;
-  padding-right: 10px;
-  border-right: solid 1px;
+.actAttrContainer {
+  width: 75%;
 }
 
-.pSDate {
-  width: 33%;
-  padding-right: 10px;
-  padding-left: 10px;
-  border-right: solid 1px;
-  border-left: 1px solid;
-}
-
-.pFDate {
-  width: 33%;
-  padding-right: 10px;
-  padding-left: 10px;
-  border-right: solid 1px;
-  border-left: 1px solid;
-}
-
-.editButton {
-  width: 100%;
-}
-
-.editForm {
+.actButtons {
+  width: 25%;
   display: flex;
   flex-direction: column;
-  padding-top: 15px;
-}
-
-.formInput {
-  height: 150px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.formInputDate {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.pAContainer {
-  border: solid 1px purple;
-}
-
-.smallAContainer {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-}
-
-.aGenInfo {
-  width: 100%;
-  display: flex;
-}
-
-.aTitle {
-  width: 33%;
-}
-
-.aDescription {
-  width: 100%;
-}
-
-.aDueDate {
-  width: 33%;
-}
-
-.aPriority {
-  width: 33%;
 }
