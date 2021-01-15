@@ -1,0 +1,74 @@
+.hidden {
+  display: none !important;
+}
+
+.masterAlert {
+  text-align: center;
+  padding: 15px;
+  font-size: 25px;
+  color: red;
+  font-weight: bolder;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.defaultFormContainer {
+  text-align: center;
+  padding: 15px;
+}
+
+.defaultProjectName {
+  padding-bottom: 15px;
+}
+
+.defaultProjectDates {
+  padding-bottom: 15px;
+}
+
+.defaultProjectObjective {
+  padding-bottom: 15px;
+}
+
+.projectContainer {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding-top: 15px;
+}
+
+.projectMainContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.projectAttrContainer {
+  width: 75%;
+}
+
+.projectButtons {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.actInfoContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.actAttrContainer {
+  width: 75%;
+}
+
+.actButtons {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
